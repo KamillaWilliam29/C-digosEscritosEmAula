@@ -42,6 +42,18 @@ public class InitALuno implements ApplicationListener<ContextRefreshedEvent> {
 		
 		
 		alunoService.deletar(3);
+		
+		Aluno alunoAlterado = new Aluno();
+		alunoAlterado.setId(1);
+		alunoAlterado.setNome("Lucas Silva");
+		
+		alunoService.Alterar(alunoAlterado);
+		
+		Aluno alunoAlterado2 = new Aluno();
+		alunoAlterado2.setId(2);
+		alunoAlterado2.setNome("Arthur da Rocha");
+		
+		alunoService.Alterar(alunoAlterado2);
 		//List<Aluno> listaAlunos = alunoService.buscarTodosAlunos();
 		//for(Aluno aluno:listaAlunos) {
 		//System.out.println(aluno.getNome());
