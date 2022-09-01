@@ -28,6 +28,9 @@ public class InitTurma implements ApplicationListener<ContextRefreshedEvent>{
 		Turma turma3 = new Turma();
 		turma3.setProfessor("Manuel Alexandre");
 		turma3.setSala("503");
+		service.salvar(turma1);
+		service.salvar(turma2);
+		service.salvar(turma3);
 	}
 
 }
