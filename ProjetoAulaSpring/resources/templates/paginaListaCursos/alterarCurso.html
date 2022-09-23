@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+	<head>
+		<title>Alterar Cursos</title>
+			<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+	</head>
+<body>
+	<div class="container">
+		<div class="panel-default">
+			<div class="text-center">
+				<h1 class="h4 text-gray-900 mb-4">Alterar Cursos</h1>
+			</div>
+		<div class="panel-body">
+	<form class="form-horizontal" th:action="@{/curso/salvar}" th:object=${curso} method="post" style="margin: 10px;">
+		<div class="form-group">
+			<fieldset>
+				<div class="form-group row">
+					<label>ID</label>
+					<input type="text" class="form-control input-sm" th:field="*{id}" readonly="readonly"/>
+				</div>
+			<div class="form-group row">
+				<label>Nome</label>
+					<input type="text" class="form-control input-sm" th:field="*{nome}" placeholder="Informe o nome" maxlength="50"/>
+			</div>
+			</fieldset>
+		<div align="center">
+			<button type="submit" class="btn btn-sm btn-sucess">Salvar</button>
+			<button type="cancel" class="btn btn-sm btn-alert">Cancelar</button>
+
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+	</body>
+</html>
