@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-	<title>Listagem de professores</title>
+	<title>Listagem de Professores</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
 </head>
@@ -21,13 +21,13 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr  th:each="professor : ${professor}">
+							<tr  th:each="professor : ${professores}">
 								<td th:text="${professor.id}"></td>
 								<td th:text="${professor.nome}"></td>
 								<td>
 									<div class="btn-group pull-right">
-										<a class="btn btn-sm btn-primary">ALTERAR</a>
-										<a class="delete btn btn-sm btn-danger">EXCLUIR</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/professor/paginaAlterar/{idProfessor}(idProfessor=${professor.id})}">ALTERAR</a>
+										<a class="delete btn btn-sm btn-danger" th:href="@{/professor/excluir/{idProfessor}(idProfessor=${professor.id})}">EXCLUIR</a>
 									</div>
 								</td>
 							</tr>
@@ -35,8 +35,7 @@
 					</table>
 				</div>
 			</div>
-		</div>
 		<a class="btn btn-sm btn-success"  th:href="@(/professor/cadastrarProfessor)">CADASTRAR NOVO PROFESSOR</a>
 	</div>
-</body>
+	</body>
 </html>
