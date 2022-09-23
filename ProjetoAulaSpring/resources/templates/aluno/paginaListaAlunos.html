@@ -26,8 +26,8 @@
 								<td th:text="${aluno.nome}"></td>
 								<td>
 									<div class="btn-group pull-right">
-										<a class="btn btn-sm btn-primary">ALTERAR</a>
-										<a class="delete btn btn-sm btn-danger">EXCLUIR</a>
+										<a class="btn btn-sm btn-primary" th:href="@{/aluno/paginaAlterar/{idAluno}(idAluno=${aluno.id})}">ALTERAR</a>
+										<a class="delete btn btn-sm btn-danger" th:href="@{/aluno/excluir/{idAluno}(idAluno=${aluno.id})}">EXCLUIR</a>
 									</div>
 								</td>
 							</tr>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</div>
-		<a class="btn btn-sm btn-success" th:href="@(/aluno/cadastrarAluno)">CADASTRAR NOVO ALUNO</a>
+		<a class="btn btn-sm btn-success" th:href="@{/aluno/cadastrarAluno}">CADASTRAR NOVO ALUNO</a>
 	</div>
 </body>
 </html>
