@@ -65,6 +65,7 @@ public class GerenciadoraClientesTeste {
 		gerClientes.adicionaCliente(cliente03);
 		gerClientes.pesquisaCliente(3);
 		
+		//execução do teste
 		boolean clienteRemovido = gerClientes.removeCliente(3);
 		boolean clienteRemovido2 = gerClientes.removeCliente(4);
 		gerClientes.adicionaCliente(cliente5);
