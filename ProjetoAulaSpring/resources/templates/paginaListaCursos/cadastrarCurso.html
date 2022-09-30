@@ -12,12 +12,21 @@
 				<h1 class="h4 text-gray-900 mb-4">Cadastrar Cursos</h1>
 			</div>
 			<div class="panel-body">
-				<form class="form-horizontal" th:action="@{/curso/salvar}" th:object=${curso} method="post" style="margin: 10px;">
+				<form class="form-horizontal" th:action="@{/curso/salvar}" th:object=${cursoNovo} method="post" style="margin: 10px;">
 					<div class="form-group">
+						<div class=""form-group"" >
+							<label>
+							Professores
+							 </label>
+							 <select class=-"form-control" th:field="*{professor}"> 
+							 	<option value = "">Selecione um Professor</option>
+							 	<option th:each=" prof : ${professores}" th:value=" ${prof.Id}" th:text=" ${prof.nome}"> </option>
+							 </select>
+						</div>
 						<fieldset>
 							<div class="form-group row">
-								<label>Nome</label>
-								<input type="text" class="form-control input-sm" th:field="*{nome}" placeholder="Informe o nome" maxlength="50">
+								<label>Descrição</label>
+								<input type="text" class="form-control input-sm" th:field="*{descricao}" placeholder="Informe o nome" maxlength="50">
 							</div>
 						</fieldset>
 						<div align="center">

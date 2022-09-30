@@ -17,13 +17,13 @@
 						<thead>
 							<tr>
 								<th>ID</th>
-								<th>NOME</th>
+								<th>DESCRICAO</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr  th:each="curso : ${curso}">
 								<td th:text="${curso.id}"></td>
-								<td th:text="${curso.nome}"></td>
+								<td th:text="${curso.descricao}"></td>
 								<td>
 									<div class="btn-group pull-right">
 										<a class="btn btn-sm btn-primary" th:href="@{/curso/paginaAlterar/{idCurso}(idCurso=${curso.id})}">ALTERAR</a>
@@ -35,7 +35,7 @@
 					</table>
 				</div>
 			</div>
-		<a class="btn btn-sm btn-success"  th:href="@(/curso/cadastrarCurso)">CADASTRAR NOVO CURSO</a>
+		<a class="btn btn-sm btn-success"  th:href="@{/curso/cadastrarCurso}">CADASTRAR NOVO CURSO</a>
 	</div>
 	</body>
 </html>

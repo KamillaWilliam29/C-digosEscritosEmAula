@@ -20,16 +20,28 @@
 					<input type="text" class="form-control input-sm" th:field="*{id}" readonly="readonly"/>
 				</div>
 			<div class="form-group row">
-				<label>Nome</label>
-					<input type="text" class="form-control input-sm" th:field="*{nome}" placeholder="Informe o nome" maxlength="50"/>
+				<label>Descrição</label>
+					<input type="text" class="form-control input-sm" th:field="*{descricao}" placeholder="Informe a descrição" maxlength="50"/>
 			</div>
+			
+			<div class="form-group row">
+				<label> Professores </label>
+				<select class ="form-control" th:field="*{professor}">
+					<option value =""> Selecione um Professor</option>
+					<option th:each ="prof: ${professores}" th:value="${prof.id}" th:text=" ${prof.nome}"> </option>
+					
+				</select>
+			</div> 
 			</fieldset>
 		<div align="center">
-			<button type="submit" class="btn btn-sm btn-sucess">Salvar</button>
-			<button type="cancel" class="btn btn-sm btn-alert">Cancelar</button>
+			
+				<button type= "submit" class=" btn btn-sm btn-success ">Salvar</button>				
+				<a href="/curso/listarCursos" class=" btn btn-sm btn-alert "> Cancelar</a>
 
 					</div>
+			
 				</div>
+				
 			</form>
 		</div>
 	</div>
