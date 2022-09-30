@@ -2,66 +2,47 @@ package br.com.senac.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Curso implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
+	private static final long serialVersionUID = 7836311154140980475L;
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	public Integer Id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Column
+	private String descricao;
 	
-	public String nome;
+	@OneToOne
+	private Professor professor;
 	
-	public String turma;
-	/**
-	 * @return the id
-	 */
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
 	public Integer getId() {
-		return Id;
+		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
-	/**
-	 * @return the nome
-	 */
-	
-	
-	public String getNome() {
-		return nome;
+	public String getDescricao() {
+		return descricao;
 	}
-	/**
-	 * @param nome the nome to set
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
-	
-	/**
-	 * @return the professor
-	 */
-	public String getTurma() {
-		return turma;
-	}
-	/**
-	 * @param professor the professor to set
-	 */
-	public void setTurma(String turma) {
-		this.turma = turma;
-	}
-	
-	
+
+
 }
