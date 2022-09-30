@@ -30,12 +30,13 @@ public class CursoService {
 	
 	public void update(Curso cursoAlterado) {
 		Curso curso = select(cursoAlterado.getId());
-		curso.setNome(cursoAlterado.getNome());
+		curso.setDescricao(cursoAlterado.getDescricao());
 		insert(curso);
 	}
 	public Curso salvarAlteraçao(Curso cursoAlterado) {
 		Curso curso = select(cursoAlterado.getId());
-		curso.setNome(cursoAlterado.getNome());
+		curso.setDescricao(cursoAlterado.getDescricao());
+		curso.setProfessor(cursoAlterado.getProfessor());
 		return repo.save(curso);
 	}
 }
