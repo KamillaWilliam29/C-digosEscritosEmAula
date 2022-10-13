@@ -2,66 +2,47 @@ package br.com.senac.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Aluno implements Serializable{
-	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 6631457942567742474L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer Id;
-
+	private Integer id;
+	
+	@Column
 	private String nome;
 	
-	private String curso;
+	@ManyToOne
+	@JoinColumn(name = "id_turma")
+	private Turma turma;
 	
-	/**
-	 * @return the nome
-	 */
-	/**
-	 * @return the id
-	 */
-	public Integer getId() {
-		return Id;
+	public Turma getTurma() {
+		return turma;
 	}
-
-	/**
-	 * @param id the id to set
-	 */
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	public Integer getId() {
+		return id;
+	}
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
 	}
-
-	/**
-	 * @param nome the nome to set
-	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	/**
-	 * @return the curso
-	 */
-	public String getCurso() {
-		return curso;
-	}
-
-	/**
-	 * @param curso the curso to set
-	 */
-	public void setCurso(String curso) {
-		this.curso = curso;
-	}
-
-	
 }
