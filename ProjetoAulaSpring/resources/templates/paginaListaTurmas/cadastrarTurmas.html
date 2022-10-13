@@ -19,6 +19,14 @@
 								<label>Nome</label>
 								<input type="text" class="form-control input-sm" th:field="*{nome}" placeholder="Informe o nome" maxlength="50">
 							</div>
+							<div class="form-group row">
+							<label> Curso</label>
+							<div th:each= "objCurso : ${listaCursos}">
+								<input type="checkbox" th:field = "*{cursos}" th:value = "${objCurso.id}" />
+									<label th:text="${objCurso.nome}"></label>
+														
+							</div>
+							</div>
 						</fieldset>
 						<div align="center">
 							<button type="submit" class="btn btn-sm btn-sucess">Salvar</button>
