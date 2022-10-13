@@ -10,12 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.senac.entity.Aluno;
 import br.com.senac.service.AlunoService;
+import br.com.senac.service.TurmaService;
 
 @Controller
 @RequestMapping("aluno")
 public class AlunoController {
 	@Autowired
 	private AlunoService alunoService;
+	
+	@Autowired
+	private TurmaService turmaService;
 	
 	@GetMapping("/listarAlunos")
 	public ModelAndView listaTodosAlunos() {
@@ -27,7 +31,8 @@ public class AlunoController {
 	@GetMapping("/cadastrarAluno")
 	public ModelAndView cadastrarAluno() {
 		ModelAndView mv = new ModelAndView("aluno/cadastrarAluno");
-		 mv.addObject("aluno", new Aluno());
+		 mv.addObject("alunonovo", new Aluno());
+		 mv.addObject("listaTurma", turmaService.selectAll());
 		 return mv;
 	}
 	
@@ -36,7 +41,7 @@ public class AlunoController {
 		alunoService.insert(aluno);
 		return listaTodosAlunos();
 	}
-	//http://localhost:8080/aluno/listarAluno
+	//http://localhost:8080/aluno/listarAlunos
 	//http://localhost:8080/aluno/cadastrarAluno
 	//http://localhost:8080/h2-console
 	
@@ -50,6 +55,7 @@ public class AlunoController {
 	public ModelAndView alterarAluno(@PathVariable ("id")Integer id) {
 		ModelAndView mv = new ModelAndView("aluno/alterarAluno");
 		mv.addObject("aluno", alunoService.select(id));
+		 mv.addObject("listaTurma", turmaService.selectAll());
 		return mv;
 		
 	}
@@ -57,6 +63,7 @@ public class AlunoController {
 	@PostMapping("/salvarAlteraçao")
 	public ModelAndView alterar(Aluno alunoAlterado) {
 		alunoService.salvarAlteraçao(alunoAlterado);
+		
 		return listaTodosAlunos();
 	}
 }
