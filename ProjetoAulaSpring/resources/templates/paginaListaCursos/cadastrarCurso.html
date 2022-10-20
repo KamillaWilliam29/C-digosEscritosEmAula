@@ -20,13 +20,14 @@
 							 </label>
 							 <select class=-"form-control" th:field="*{professor}"> 
 							 	<option value = "">Selecione um Professor</option>
-							 	<option th:each=" prof : ${professores}" th:value=" ${prof.Id}" th:text=" ${prof.nome}"> </option>
+							 	<option th:each=" profs : ${professores}" th:value=" ${prof.id}" th:text=" ${prof.nome}"> </option>
 							 </select>
 						</div>
 						<fieldset>
 							<div class="form-group row">
 								<label>Descrição</label>
-								<input type="text" class="form-control input-sm" th:field="*{descricao}" placeholder="Informe o nome" maxlength="50">
+								<input type="text" class="form-control input-sm" th:field="*{descricao}" placeholder="Informe a descrição" maxlength="50">
+								</input>
 							</div>
 						</fieldset>
 						<div align="center">
