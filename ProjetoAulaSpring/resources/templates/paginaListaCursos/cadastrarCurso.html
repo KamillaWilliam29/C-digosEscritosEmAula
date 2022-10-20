@@ -20,7 +20,7 @@
 							 </label>
 							 <select class=-"form-control" th:field="*{professor}"> 
 							 	<option value = "">Selecione um Professor</option>
-							 	<option th:each=" profs : ${professores}" th:value=" ${prof.id}" th:text=" ${prof.nome}"> </option>
+							 	<option th:each=" profs : ${professores}" th:value=" ${profs.id}" th:text=" ${profs.nome}"> </option>
 							 </select>
 						</div>
 						<fieldset>
