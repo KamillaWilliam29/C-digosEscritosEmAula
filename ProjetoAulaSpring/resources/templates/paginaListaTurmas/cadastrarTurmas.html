@@ -22,8 +22,9 @@
 							<div class="form-group row">
 							<label> Curso</label>
 							<div th:each= "objCurso : ${listaCursos}">
-								<input type="checkbox" th:field = "*{cursos}" th:value = "${objCurso.id}" />
-									<label th:text="${objCurso.nome}"></label>
+								<input type="checkbox" th:field = "*{cursos}" th:value = "${objCurso.id}" th:text = "${objCurso.descricao}" >
+								<input/>
+									<label th:text="${objCurso.descricao}"></label>
 														
 							</div>
 							</div>
