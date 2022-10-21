@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+	<title>Listagem de Notas</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+</head>
+<body>
+	<div class="container">
+	<h3> Lista Avaliações <h3>
+		<div class="panel-default">
+			<div class="panel-heading">
+				<strong c>Avaliações</strong>
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-sm table-striped table-hover table-bordered">
+						<thead>
+							<tr>
+								<th> Aluno </th>
+								<th> Curso </th>
+								<th> Conceito </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr  th:each="avaliacao: : ${avaliacoes}">
+								<td th:text="${avaliacao.alunoCurso.aluno.nome}"></td>
+								<td th:text="${avaliacao.alunoCurso.curso.descricao}"></td>
+								<td th:text="${avaliacao.conceito}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="panel-footer">
+				<a class="btn btn-sm btn-success"th:href="@{/avaliacoes/adiciona}">Adicionar Avaliacao</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

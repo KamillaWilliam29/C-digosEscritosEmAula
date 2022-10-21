@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset = UTF-8"/> 
+	<title>Lançar Nota</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+</head>
+<body>
+	<div class="container">
+	<h3>Lançar Nota</h3>
+	<form th:object="${avaliacao}" th:action ="@{/avaliacoes/save}"method="post">
+		<div class="form-group">
+				<label for="alunos">Aluno:</label>
+				<select name= "AlunoCurso.aluno.AlunoId" id="alunos" class="form-control">
+					<option th:each ="aluno: ${alunos}" th:value="${aluno.alunoId}" th:text ="${aluno.nome}"> </option>
+				</select>
+			</div>
+		<div class="form-group">
+		<label for="cursos">Curso:</label>
+			<select name= "AlunoCurso.curso.cursoId" id="cursos" class="form-control">
+				<option th:each ="curso: ${cursos}" th:value="${curso.cursooId}" th:text ="${curso.nome}"> </option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="conceito">Conceito</label>
+			<input th:field="*{conceito}" id="conceito" class= "form-control" type="text" placeholder="Exemplo:bom">
+			</input>
+		</div>	
+		<div class="form-group">
+			<input id="enviar" class="btn btn-primary" type="submit" value="Salvar"></input>
+		</div>
+				</form>
+					</div>
+</body>
+</html>
