@@ -1,7 +1,8 @@
-package br.com.senac.controller;
+package br.com.senac.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,34 +15,40 @@ import br.com.senac.service.AvaliacaoService;
 import br.com.senac.service.CursoService;
 
 @Controller
-@RequestMapping("avaliacoes")
+@RequestMapping("/avaliacoes")
 public class AvaliacaoController {
-	@Autowired
-	AlunoService alunoService;
-	
-	@Autowired
-	CursoService cursoService;
-	
-	@Autowired
-	AvaliacaoService avaService;
-	
-	@GetMapping("adiciona")
-	public ModelAndView lista() {
-		ModelAndView mv = new ModelAndView("avaliacoes/inserir-nota");
-		mv.addObject("alunos", alunoService.selectAll());
-		mv.addObject("cursos",cursoService.selectAll());
-		mv.addObject("avaliacao", new Avaliacao());
-		return mv;
-	}
-	
-	@PostMapping("/save")
-	public ModelAndView save(@ModelAttribute("avaliacao") Avaliacao ava) {
-		ava.getAlunoCurso().setAluno(alunoService.select(ava.getAlunoCurso().getAluno().getId()));
-		ava.getAlunoCurso().setCurso(cursoService.select(ava.getAlunoCurso().getCurso().getId()));
-		avaService.save(ava);
-		ModelAndView mv = new ModelAndView("avaliacoes/listar-notas");
-		mv.addObject("avaliacoes", avaService.findAll());
-		return mv;
+    @Autowired
+    AlunoService alunoService;
 
-	}
+    @Autowired
+    CursoService cursoService;
+
+    @Autowired
+    AvaliacaoService avaliacaoService;
+
+    @GetMapping("/adiciona")
+    public ModelAndView adiciona(){
+        ModelAndView mv = new ModelAndView("avaliacoes/inserir-nota");
+        mv.addObject("alunos", alunoService.buscarTodosAlunos());
+        mv.addObject("cursos", cursoService.buscarTodosCursos());
+        mv.addObject("avaliacao", new Avaliacao());
+        return mv;
+    }
+
+    @PostMapping("/save")
+    public ModelAndView save(@ModelAttribute("avaliacao") Avaliacao avaliacao){
+        avaliacao.getAlunoCurso().setAluno(alunoService.buscarAlunoId(avaliacao.getAlunoCurso().getAluno().getId()));
+        avaliacao.getAlunoCurso().setCurso(cursoService.buscarCursoId(avaliacao.getAlunoCurso().getCurso().getId()));
+        avaliacaoService.save(avaliacao);
+        ModelAndView mv = new ModelAndView("avaliacoes/listar-notas");
+        mv.addObject("avaliacoes", avaliacaoService.findAll());
+        return mv;
+    }
+
+    @GetMapping("listar")
+    public ModelAndView listar() {
+        ModelAndView mv = new ModelAndView("avaliacoes/listar-notas");
+        mv.addObject("avaliacoes", avaliacaoService.findAll());
+        return mv;
+    }
 }
