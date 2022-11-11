@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.senac.entity.Aluno;
 import br.com.senac.entity.Professor;
 import br.com.senac.repository.ProfessorRepository;
 
@@ -38,6 +39,11 @@ public class ProfessorService {
 		professor.setNome(profAlterado.getNome());
 		return repo.save(professor);
 	}
+
+	public List <Professor> buscaLivrosPeloNome(String nome){
+		List <Professor> lista = repo.buscaLivroPeloNome(nome);
+	
+		return lista;
+	}
 }
 	
-
