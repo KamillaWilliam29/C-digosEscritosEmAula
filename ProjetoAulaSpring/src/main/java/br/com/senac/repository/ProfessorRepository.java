@@ -7,12 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.senac.entity.Aluno;
-import br.com.senac.entity.Endereço;
-
+import br.com.senac.entity.Professor;
 
 @Repository
-public interface EndereçoRepository extends JpaRepository<Endereço, Integer>{
-
-	List  <Endereço> findByAluno(Aluno aluno);
-	}
-
+public interface ProfessorRepository extends JpaRepository<Professor, Integer>{
+	
+	@Query("SELECT DISTINCT p FROM Professor p JOIN FETCH p.livros l")
+	List <Professor> buscaLivroPeloNome(String nome);
+}
