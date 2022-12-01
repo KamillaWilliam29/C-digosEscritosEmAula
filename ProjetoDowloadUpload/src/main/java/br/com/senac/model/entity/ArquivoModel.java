@@ -11,25 +11,30 @@ import javax.persistence.Table;
 @Table(name = "file_model")
 public class ArquivoModel {
 
-
+//ArquivoModel trará as informações de dentro do arquivo, como imagem e nome.
 	@Id
 	@GeneratedValue
+	@Column(name="id")
 	private Long id;
 			
 	@Column(name = "name")
 	private String name;
 
+	@Column(name="mimetype")
 	private String mimeType;
 	
 	@Lob
+	@Column(name="pic")
 	private byte []pic;
 
+	//constructor
 	public ArquivoModel(String name, String mimeType, byte[] pic) {
 		this.name = name;
 		this.mimeType = mimeType;
 		this.pic = pic;
 	}
 
+	//getters and setters
 	public Long getId() {
 		return id;
 	}
