@@ -8,56 +8,53 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.senac.model.entity.ArquivoModel;
-import br.com.senac.model.repository.ArquivoRepository;
+import br.com.senac.model.ArquivoModel;
+import br.com.senac.repository.FileRepository;
 
 @Controller
 public class UploadArquivoController {
 
-	
 	@Autowired
-	ArquivoRepository fileRepository;
-	
-	@GetMapping("/")
-	public String index() {
-		return "uploadform";
-	}
-	
-	@PostMapping("/")
-	public String uploadMultipartFile(MultipartFile[] files, Model model) {
-		List <String> fileNames = new ArrayList();
-	
+	FileRepository fileRepository;
+	//primeiro o Upload Controller fará uma "upload fom" para subir o arquivo na nuvem"
+    @GetMapping("/")
+    public String index() {
+        return "uploadform";
+    }
+    //Depois, se abrirá uma exceção para tratar o arquivo que você deseja subir ou baixar.
+    @PostMapping("/")
+    public String uploadMultipartFile(@RequestParam("files") MultipartFile[] files, Model model) {
+    	List<String> fileNames = new ArrayList<String>();
+    	
 		try {
-			List <ArquivoModel> storedFile = new ArrayList <ArquivoModel>();
+			List<ArquivoModel> storedFile = new ArrayList<ArquivoModel>();
 			
-			for (MultipartFile file: files) {
+			for(MultipartFile file: files) {
 				ArquivoModel fileModel = fileRepository.findByName(file.getOriginalFilename());
 				if(fileModel != null) {
-					//upload new contents
+					// update new contents
 					fileModel.setPic(file.getBytes());
-				} else {
-					fileModel = new ArquivoModel(file.getOriginalFilename(), file.getContentType(),
-							file.getBytes());
+				}else {
+					fileModel = new ArquivoModel(file.getOriginalFilename(), file.getContentType(), file.getBytes());
 				}
 				
-				fileNames.add(file.getOriginalFilename());
+				fileNames.add(file.getOriginalFilename());				
 				storedFile.add(fileModel);
-				
 			}
-		//Save all files to database
 			
-			fileRepository.saveAll(storedFile);
-			
-			model.addAttribute("message", "Files uploaded sucessfully");
+			// Save all Files to database
+	    	fileRepository.saveAll(storedFile);
+	    	
+			model.addAttribute("message", "Files uploaded successfully!");
+			model.addAttribute("files", fileNames);
+		} catch (Exception e) {
+			model.addAttribute("message", "Fail!");
 			model.addAttribute("files", fileNames);
 		}
-		catch (Exception e) {
-			model.addAttribute("message", "Fail");
-			model.addAttribute("files", fileNames);
-		}
-		return "uploadform";
-	}
-	
+		
+        return "uploadform";
+    }
 }
